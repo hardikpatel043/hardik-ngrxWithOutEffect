@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@ngrx/core": "1.2.0",
-    "@ngrx/effects": "9.1.0",
     "@ngrx/entity": "^9.1.0",
     "@ngrx/store": "9.1.0",
     "bootstrap": "^4.4.1",

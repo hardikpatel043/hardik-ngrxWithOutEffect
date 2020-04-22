@@ -1,18 +1,26 @@
 import { Course } from "./../model/course.model";
+import { CourseState } from "../store/course.reducers";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { coursesLoaded } from "../store/course.actions";
+import { tap } from "rxjs/operators";
 
 @Injectable()
 export class CourseService {
   http: HttpClient;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, private store: Store<CourseState>) {
     this.http = http;
   }
 
   getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>("/api/courses");
+    return this.http.get<Course[]>("/api/courses").pipe(
+      tap((result: any) => {
+        this.store.dispatch(coursesLoaded({ courses: result }));
+      })
+    );
   }
 
   createCourse(course: Course): Observable<Course> {

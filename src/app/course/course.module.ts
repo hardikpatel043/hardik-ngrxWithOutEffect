@@ -1,9 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { CourseEffects } from "./store/course.effects";
 import { CourseService } from "./services/course.service";
 import { CoursesListComponent } from "./component/courses-list/courses-list.component";
 import { CreateCourseComponent } from "./component/create-course/create-course.component";
-import { EffectsModule } from "@ngrx/effects";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { StoreModule } from "@ngrx/store";
@@ -25,8 +23,7 @@ import { environment } from "src/environments/environment";
         }
       }
     ),
-    StoreModule.forFeature("courses", courseReducer),
-    EffectsModule.forRoot([CourseEffects])
+    StoreModule.forFeature("courses", courseReducer)
   ],
   providers: [CourseService],
   bootstrap: [],
